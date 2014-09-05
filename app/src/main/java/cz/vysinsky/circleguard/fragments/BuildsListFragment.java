@@ -34,14 +34,19 @@ public class BuildsListFragment extends SpiceListFragment
     private int currentVisibleItemCount;
     private int totalItemCount;
     private BuildsListAdapter listViewAdapter;
-    private Thread timerThread;
 
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        timerThread = new Thread() {
+        startTimerThread();
+    }
+
+
+
+    private void startTimerThread() {
+        Thread timerThread = new Thread() {
             @Override
             public void run() {
                 try {
@@ -112,7 +117,7 @@ public class BuildsListFragment extends SpiceListFragment
 
 
     private void performRequest(String appendKey) {
-        BuildsRequest buildsRequest = new BuildsRequest();
+        BuildsRequest buildsRequest = new BuildsRequest(getActivity());
 
         if (refreshing) {
             swipeRefreshLayout.setRefreshing(true);

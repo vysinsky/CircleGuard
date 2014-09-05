@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="pref_api_token"
+        android:title="@string/pref_api_token_title"
+        android:summary="@string/pref_api_token_summary"/>
+
+</PreferenceScreen>

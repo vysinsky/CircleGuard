@@ -24,7 +24,7 @@ public class BuildsRequest extends CircleCiRequest<BuildsList> {
     public BuildsList loadDataFromNetwork() throws Exception {
         Uri.Builder uriBuilder = Uri.parse(String.format(API_URL, "/recent-builds"))
                 .buildUpon()
-                .appendQueryParameter("circle-token", "")
+                .appendQueryParameter("circle-token", TOKEN)
                 .appendQueryParameter("offset", offset.toString())
                 .appendQueryParameter("limit", String.valueOf(Math.min(limit, 100)));
 

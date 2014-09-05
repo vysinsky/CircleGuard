@@ -2,4 +2,7 @@
 <resources>
     <string name="app_name">CircleGuard</string>
     <string name="title_activity_main">CircleGuard</string>
+    <string name="action_settings">Settings</string>
+    <string name="pref_api_token_title">Api Token</string>
+    <string name="pref_api_token_summary">CircleCI API token</string>
 </resources>
