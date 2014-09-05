@@ -22,11 +22,15 @@ public class BuildsListAdapter extends ArrayAdapter<Build> {
     private final ArrayList<Build> items;
     private ViewHolder holder = new ViewHolder();
 
+
+
     public BuildsListAdapter(Context context, ArrayList<Build> items) {
         super(context, R.layout.build_list_item, items);
         this.context = context;
         this.items = items;
     }
+
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -48,6 +52,8 @@ public class BuildsListAdapter extends ArrayAdapter<Build> {
         holder.buildTimeView.setText(build.getElapsedTime());
         return convertView;
     }
+
+
 
     private PorterDuffColorFilter getColorFilterByStatus(int status) {
         int color;
@@ -73,6 +79,8 @@ public class BuildsListAdapter extends ArrayAdapter<Build> {
 
         return new PorterDuffColorFilter(color, PorterDuff.Mode.SRC);
     }
+
+
 
     static class ViewHolder {
         View indicatorView;

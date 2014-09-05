@@ -36,6 +36,8 @@ public class BuildsListFragment extends SpiceListFragment
     private BuildsListAdapter listViewAdapter;
     private Thread timerThread;
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,11 +75,7 @@ public class BuildsListFragment extends SpiceListFragment
         timerThread.start();
     }
 
-    @Override
-    public void onStop() {
-        timerThread.interrupt();
-        super.onStop();
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -97,15 +95,21 @@ public class BuildsListFragment extends SpiceListFragment
         return wrapper;
     }
 
+
+
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Build build = listViewAdapter.getItem(position);
         Toast.makeText(getActivity(), "Status of this build: " + build.getStatusText(), Toast.LENGTH_SHORT).show();
     }
 
+
+
     private void loadData() {
         performRequest(getRandom());
     }
+
+
 
     private void performRequest(String appendKey) {
         BuildsRequest buildsRequest = new BuildsRequest();
@@ -123,6 +127,8 @@ public class BuildsListFragment extends SpiceListFragment
         spiceManager.execute(buildsRequest, lastRequestCacheKey + appendKey, DurationInMillis.ONE_MINUTE, new ListBuildsRequestListener());
     }
 
+
+
     public String getRandom() {
         Random generator = new Random();
         StringBuilder randomStringBuilder = new StringBuilder();
@@ -134,10 +140,14 @@ public class BuildsListFragment extends SpiceListFragment
         return randomStringBuilder.toString();
     }
 
+
+
     private void reloadData() {
         refreshing = true;
         performRequest(getRandom());
     }
+
+
 
     @Override
     public void onScrollStateChanged(AbsListView absListView, int currentScrollState) {
@@ -150,12 +160,16 @@ public class BuildsListFragment extends SpiceListFragment
         }
     }
 
+
+
     @Override
     public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         this.currentVisibleItem = firstVisibleItem;
         this.currentVisibleItemCount = visibleItemCount;
         this.totalItemCount = totalItemCount;
     }
+
+
 
     private class OnBuildsRefreshListener implements SwipeRefreshLayout.OnRefreshListener {
         @Override
@@ -172,6 +186,8 @@ public class BuildsListFragment extends SpiceListFragment
             Toast.makeText(getActivity(), spiceException.getMessage(), Toast.LENGTH_SHORT).show();
             swipeRefreshLayout.setRefreshing(false);
         }
+
+
 
         @Override
         public void onRequestSuccess(BuildsList builds) {

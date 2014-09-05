@@ -47,37 +47,55 @@ public class Build {
     @JsonProperty("stop_time")
     private Date stopTime;
 
+
+
     public Integer getId() {
         return id;
     }
+
+
 
     public void setId(Integer id) {
         this.id = id;
     }
 
+
+
     public String getRepositoryName() {
         return repositoryName;
     }
+
+
 
     public void setRepositoryName(String repositoryName) {
         this.repositoryName = repositoryName;
     }
 
+
+
     public String getUsername() {
         return username;
     }
+
+
 
     public void setUsername(String username) {
         this.username = username;
     }
 
+
+
     public Long getBuildTime() {
         return buildTime;
     }
 
+
+
     public void setBuildTime(Long buildTime) {
         this.buildTime = buildTime;
     }
+
+
 
     public int getStatus() {
         if (status.equals("success") || status.equals("fixed")) {
@@ -98,33 +116,49 @@ public class Build {
         return STATUS_GRAY;
     }
 
+
+
     public void setStatus(String status) {
         this.status = status;
     }
+
+
 
     public String getSubject() {
         return subject;
     }
 
+
+
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
+
 
     public String getBranch() {
         return branch;
     }
 
+
+
     public void setBranch(String branch) {
         this.branch = branch;
     }
+
+
 
     public Boolean getSshEnabled() {
         return sshEnabled;
     }
 
+
+
     public void setSshEnabled(Boolean sshEnabled) {
         this.sshEnabled = sshEnabled;
     }
+
+
 
     public String getElapsedTime() {
 
@@ -149,13 +183,19 @@ public class Build {
         );
     }
 
+
+
     public Date getStartTime() {
         return startTime;
     }
 
+
+
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
+
+
 
     public String getStatusText() {
         return status;
