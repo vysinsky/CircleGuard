@@ -1,6 +1,5 @@
 package cz.vysinsky.circleguard.fragments;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
@@ -13,13 +12,6 @@ public class SettingsFragment extends PreferenceFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
-
-        ActionBar actionBar = getActivity().getActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
     }
 
 }

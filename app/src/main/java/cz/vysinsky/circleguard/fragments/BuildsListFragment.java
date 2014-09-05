@@ -52,6 +52,10 @@ public class BuildsListFragment extends SpiceListFragment
                 try {
                     while (!isInterrupted()) {
                         Thread.sleep(1000);
+                        if(getActivity() == null) {
+                            interrupt();
+                            break;
+                        }
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -96,7 +100,12 @@ public class BuildsListFragment extends SpiceListFragment
         listView = (ListView) wrapper.findViewById(android.R.id.list);
         listView.setOnScrollListener(this);
         loadingPlaceholderContainer = (LinearLayout) wrapper.findViewById(R.id.list_loading_placeholder);
-        loadData();
+        refreshing = true;
+        if (listViewAdapter == null) {
+            loadData();
+        } else {
+            listView.setAdapter(listViewAdapter);
+        }
         return wrapper;
     }
 
@@ -122,7 +131,7 @@ public class BuildsListFragment extends SpiceListFragment
         if (refreshing) {
             swipeRefreshLayout.setRefreshing(true);
             buildsRequest.setOffset(0);
-            buildsRequest.setLimit(Math.min(totalItemCount, 100));
+            buildsRequest.setLimit(totalItemCount);
         } else {
             buildsRequest.setOffset(totalItemCount);
             buildsRequest.setLimit(BuildsRequest.DEFAULT_LIMIT);

@@ -12,6 +12,10 @@ import cz.vysinsky.circleguard.fragments.SettingsFragment;
 
 public class MainActivity extends Activity {
 
+    private static final String TAG = "BACKSTACK";
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +58,7 @@ public class MainActivity extends Activity {
         SettingsFragment settingsFragment = new SettingsFragment();
         getFragmentManager().beginTransaction()
                 .replace(R.id.main_container, settingsFragment)
-                .addToBackStack(null)
+                .addToBackStack(TAG)
                 .commit();
     }
 
