@@ -105,11 +105,11 @@ public class Build {
             return STATUS_RED;
         }
 
-        if (status.equals("scheduled") || status.equals("queued")) {
+        if (status.equals("scheduled") || status.equals("queued") || status.equals("not_run")) {
             return STATUS_ORANGE;
         }
 
-        if (status.equals("running")) {
+        if (status.equals("running") || status.equals("canceled") || status.equals("no_tests")) {
             return STATUS_BLUE;
         }
 

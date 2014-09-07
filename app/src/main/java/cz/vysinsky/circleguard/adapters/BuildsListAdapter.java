@@ -1,9 +1,7 @@
 package cz.vysinsky.circleguard.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import cz.vysinsky.circleguard.R;
+import cz.vysinsky.circleguard.helpers.StatusIconResolver;
 import cz.vysinsky.circleguard.model.entities.Build;
 
 public class BuildsListAdapter extends ArrayAdapter<Build> {
@@ -46,38 +45,18 @@ public class BuildsListAdapter extends ArrayAdapter<Build> {
         convertView.setTag(holder);
 
         final Build build = items.get(position);
-        holder.indicatorView.getBackground().setColorFilter(getColorFilterByStatus(build.getStatus()));
+
+        Drawable statusDrawable = context.getResources().getDrawable(StatusIconResolver.resolve(build.getStatus()));
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            holder.indicatorView.setBackground(statusDrawable);
+        } else {
+            holder.indicatorView.setBackgroundDrawable(statusDrawable);
+        }
+
         holder.titleView.setText("#" + build.getId() + " " + build.getUsername() + "/" + build.getRepositoryName());
         holder.branchNameView.setText(build.getBranch());
         holder.buildTimeView.setText(build.getElapsedTime());
         return convertView;
-    }
-
-
-
-    private PorterDuffColorFilter getColorFilterByStatus(int status) {
-        int color;
-
-        switch (status) {
-            case Build.STATUS_GREEN:
-                color = Color.GREEN;
-                break;
-            case Build.STATUS_BLUE:
-                color = Color.BLUE;
-                break;
-            case Build.STATUS_ORANGE:
-                color = Color.YELLOW;
-                break;
-            case Build.STATUS_RED:
-                color = Color.RED;
-                break;
-            case Build.STATUS_GRAY:
-            default:
-                color = Color.GRAY;
-        }
-
-
-        return new PorterDuffColorFilter(color, PorterDuff.Mode.SRC);
     }
 
 
