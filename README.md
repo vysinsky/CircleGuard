@@ -1,7 +1,7 @@
 CircleGuard
 ===========
 
-![CircleGuard logo](app/src/main/res/drawable-xxxhdpi/ic_launcher.png)
+![CircleGuard logo](app/src/main/res/drawable-xxhdpi/ic_launcher.png)
 
 CircleGuard is Android application to watch (and later also manage) your [CircleCI](https://circleci.com) builds.
 
